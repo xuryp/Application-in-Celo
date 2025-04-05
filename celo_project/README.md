@@ -79,4 +79,4 @@ npx hardhat run scripts/simulate.ts --network celo
 
 ### 6. Deployment screenshot and result
 
-![Deployment Screenshot](./images/deployment_screenshot.png)
+![Deployment Screenshot](./image/deployment_screenshot.png)

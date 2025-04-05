@@ -61,6 +61,10 @@ Check the file `hardhat.config.js` for Celo specific hardhat configuration.
 
 Use simulate.ts to test whether the transaction of contract is successful.
 
+```bash
+set CONTRACT_ADDRESS=<CONTRACT_ADDRESS>
+```
+
 On Alfajores
 
 ```bash

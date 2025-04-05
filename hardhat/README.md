@@ -2,9 +2,9 @@
 
 ## How to use
 
-1. Create a copy of `.env.example` and rename it to `.env`.
+1. Create a  `.env` and set the essential environmental variables.
 
-   1. For the **smart contract deployment** you will need the `PRIVATE_KEY` set in `.env`. **Never** use a wallet with real funds for development. Always have a separate wallet for testing. 
+   1. For the **smart contract deployment** you will need the `PRIVATE_KEY` set in `.env`.
    2. For the **smart contract verification** you will need a [Celoscan API Key](https://celoscan.io/myapikey) `CELOSCAN_API_KEY` set in `.env`.
 
 2. Compile the contract 
@@ -17,21 +17,16 @@ npx hardhat compile
 
 Make sure your wallet is funded when deploying to testnet or mainnet. You can get test tokens for deploying it on Alfajores from the [Celo Faucet](https://faucet.celo.org/alfajores).
 
-```bash
-npx hardhat ignition deploy ./ignition/modules/MiniPay.ts --network <network-name>
-```
-
 On Alfajores
 
 ```bash
-npx hardhat ignition deploy ./ignition/modules/MiniPay.ts --network alfajores
+npx hardhat run scripts/deploy.ts --network alfajores
 ```
-
 
 On Celo Mainnet
 
 ```bash
-npx hardhat ignition deploy ./ignition/modules/MiniPay.ts --network celo
+npx hardhat run scripts/deploy.ts --network celo
 ```
 
 4. Verify the contract
@@ -39,19 +34,41 @@ npx hardhat ignition deploy ./ignition/modules/MiniPay.ts --network celo
 For Alfajores (Testnet) Verification
 
 ```bash
-npx hardhat verify <CONTRACT_ADDRESS>  <CONSTRUCTOR_ARGS> --network alfajores
+npx hardhat verify <CONTRACT_ADDRESS> --network alfajores
 ```
 
-For the MiniPay.sol contract that could look like this:
+For the withdrawCeloToken.sol contract that could look like this:
 
 ```bash
-npx hardhat verify 0xF9316Ce3E661D704000bCDDA925766Bf7F09fF5B 0x1724707c52de2fa65ad9c586b5d38507f52D3c06  --network alfajores
+npx hardhat verify 0x838Ec2f4b16260DA73fE02B988E586c7Ca69eBdE --network alfajores
 ```
 
 For Celo Mainnet Verification
 
 ```bash
-npx hardhat verify <CONTRACT_ADDRESS>  <CONSTRUCTOR_ARGS> --network celo
+npx hardhat verify <CONTRACT_ADDRESS> --network celo
+```
+
+For the withdrawCeloToken.sol contract that could look like this:
+
+```bash
+npx hardhat verify 0x838Ec2f4b16260DA73fE02B988E586c7Ca69eBdE --network celo
 ```
 
 Check the file `hardhat.config.js` for Celo specific hardhat configuration.
+
+5. Test the transaction 
+
+Use simulate.ts to test whether the transaction of contract is successful.
+
+On Alfajores
+
+```bash
+npx hardhat run scripts/simulate.ts --network alfajores
+```
+
+On Celo Mainnet
+
+```bash
+npx hardhat run scripts/simulate.ts --network celo
+```
